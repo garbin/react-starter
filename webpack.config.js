@@ -3,19 +3,14 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var config = {
-  autoload:{
+var autoload = {
     React:'react',
     ReactDOM:'react-dom',
-  },
 };
-
-module.exports = {
+config = {
   devtool:'cheap-module-eval-source-map',
   entry: {
     app: [
-      'webpack/hot/dev-server',
-      'webpack-dev-server/client?http://www.market.dev',
       './src/app',
     ],
     vendors:[
@@ -60,7 +55,7 @@ module.exports = {
   plugins:[
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.ProvidePlugin(config.autoload),
+    new webpack.ProvidePlugin(autoload),
     new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
     new ExtractTextPlugin("css/[name].css"),
     new HtmlWebpackPlugin({
@@ -69,3 +64,10 @@ module.exports = {
     }),
   ]
 };
+
+if (process.env.NODE_ENV != 'production') {
+  config.entry.app.splice(0, 0, 'webpack/hot/dev-server');
+  config.entry.app.splice(0, 0, 'webpack-dev-server/client?' + process.env.NODE_DOMAIN || 'http://www.react.dev');
+}
+
+module.exports = config;
