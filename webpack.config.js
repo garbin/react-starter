@@ -12,6 +12,7 @@ config = {
   entry: {
     app: [
       './src/app',
+      './src/style/app.less',
     ],
     vendors:[
       'react',
@@ -67,7 +68,7 @@ config = {
 
 if (process.env.NODE_ENV != 'production') {
   config.entry.app.splice(0, 0, 'webpack/hot/dev-server');
-  config.entry.app.splice(0, 0, 'webpack-dev-server/client?' + process.env.NODE_DOMAIN || 'http://www.react.dev');
+  config.entry.app.splice(0, 0, 'webpack-dev-server/client?' + (process.env.WEBPACK_DEV_SERVER || 'http://www.react.dev'));
 }
 
 module.exports = config;
