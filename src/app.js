@@ -1,3 +1,3 @@
-import Example from './example';
+import routes from './routes';
 
-ReactDOM.render(<Example />, document.getElementById('main'));
+ReactDOM.render(routes, document.getElementById('main'));

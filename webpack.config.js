@@ -21,6 +21,7 @@ module.exports = {
     vendors:[
       'react',
       'react-dom',
+      'react-router',
       'expose?$!expose?jQuery!jquery',
       'expose?_!underscore',
       'bootstrap', 'bootstrap/dist/css/bootstrap.css', 'bootstrap/dist/css/bootstrap-theme.css',
